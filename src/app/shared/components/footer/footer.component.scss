@@ -1,0 +1,148 @@
+.footer-container {
+    background-color: #ECECEC;
+  }
+  
+  .content-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  .row {
+    display: flex;
+    width: 100%;
+  }
+  
+  .col {
+    flex: 1;
+    align-items: flex-start;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start; /* Añadido para alinear el contenido al inicio de la columna */
+
+  }
+  
+
+.centered-row {
+    display: flex;
+    justify-content: center;
+    align-items: center; /* Añade esta propiedad para centrar verticalmente */
+    width: 100%;
+    overflow-x: auto; /* Añade esta propiedad para permitir desplazamiento horizontal */
+}
+
+.col-centered {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 100%; /* Ajusta el ancho máximo al 100% */
+  }
+
+
+.denuncias-text {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 28px;
+    color: #0E2E4A;
+  }
+  .footer-title {
+    font-family: 'Poppins', sans-serif;
+    font-style: normal;
+    font-weight: 600;
+    font-size: 16px;
+    line-height: 24px;
+    color: #161616;
+  }
+
+  .footer-subtitle{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 20px;
+    color: #434343;
+  }
+  
+  .footer-text{
+    font-family: 'Roboto';
+    font-style: normal;
+    font-size: 14px;
+    color: #434343;
+  }
+  .bold-text {
+    font-weight: 600;
+  }
+
+  .logo {
+    height: 3.5rem;
+  }
+
+  .col-centered img {
+    margin: 0 auto; /* Añade un margen automático a las imágenes */
+  }
+  .mpfe-icons img:not(:last-child) {
+    margin-right: 80px;
+  }
+
+  .footer-disclaimer {
+    background-color: #ECECEC;
+    width: 100%;
+    text-align: center;
+    border-top: 1px solid #ccc;
+    padding: 10px 0;
+    font-family: 'Roboto';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 12px;
+    line-height: 16px;
+    color: #434343
+  }
+
+  @media only screen and (max-width: 768px) {
+    .row {
+      flex-wrap: wrap;
+    }
+  
+    .col {
+      flex: 1 0 100%;
+      margin-bottom: 20px;
+    }
+  
+    .mpfe-icons img:not(:last-child) {
+      margin-right: 20px;
+    }
+    .logo {
+      height: 2.5rem;
+    }
+
+    .denuncias-text {
+      font-size: 16px;
+      line-height: 24px;
+    }
+  
+    .footer-title {
+      font-size: 14px;
+      line-height: 20px;
+    }
+  
+    .footer-subtitle {
+      font-size: 12px;
+      line-height: 16px;
+    }
+  
+    .footer-text {
+      font-size: 12px;
+      line-height: 16px;
+    }
+  
+    .bold-text {
+      font-weight: 600;
+    }
+  
+    .footer-disclaimer {
+      font-size: 10px;
+      line-height: 14px;
+    }
+  }

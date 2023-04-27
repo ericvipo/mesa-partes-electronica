@@ -1,0 +1,114 @@
+<p>Escribe una dirección o utiliza el mapa para seleccionar una dirección exacta.</p>
+
+<form [formGroup]="form" class="grid">
+  <fn-input-wrapper label="Departamento" class="col-12 md:col-6">
+    <p-dropdown
+      [options]="[{nombre:'Lima',id:8},{nombre:'Ica',id:3}]"
+      optionLabel="nombre"
+      optionValue="id"
+      placeholder="Seleccionar"
+      formControlName="department"
+      emptyMessage="Datos no encontrados"
+      [ngClass]="{'ng-invalid ng-dirty': errorMsg('department')}"
+    ></p-dropdown>
+    <small
+      error
+      *ngIf="errorMsg('department')"
+      class="p-error block"
+    >
+      {{errorMsg('department')}}
+    </small>
+  </fn-input-wrapper>
+
+  <fn-input-wrapper label="Provincia" class="col-12 md:col-6">
+    <p-dropdown
+      [options]="[{nombre:'Huaral',id:8},{nombre:'Yauyos',id:3}]"
+      optionLabel="nombre"
+      optionValue="id"
+      placeholder="Seleccionar"
+      formControlName="province"
+      emptyMessage="Datos no encontrados"
+      [ngClass]="{'ng-invalid ng-dirty': errorMsg('province')}"
+    ></p-dropdown>
+    <small
+      error
+      *ngIf="errorMsg('province')"
+      class="p-error block"
+    >
+      {{errorMsg('province')}}
+    </small>
+  </fn-input-wrapper>
+
+  <fn-input-wrapper label="Distrito" class="col-12 md:col-6">
+    <p-dropdown
+      [options]="[{nombre:'SJL',id:8},{nombre:'Surco',id:3}]"
+      optionLabel="nombre"
+      optionValue="id"
+      placeholder="Seleccionar"
+      formControlName="district"
+      emptyMessage="Datos no encontrados"
+      [ngClass]="{'ng-invalid ng-dirty': errorMsg('district')}"
+    ></p-dropdown>
+    <small
+      error
+      *ngIf="errorMsg('district')"
+      class="p-error block"
+    >
+      {{errorMsg('district')}}
+    </small>
+  </fn-input-wrapper>
+
+  <fn-input
+    class="col-12 md:col-6"
+    label="Celular"
+    placeholder="Ej.: Av. Pedro Silva 123"
+    formControlName="address"
+  />
+
+  <div class="col-12">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27810.179181516203!2d-77.03930251041497!3d-12.04463481886612!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x9105c8b756b8e923%3A0x3d81595225f0a15a!2sMinisterio%20P%C3%BAblico%20-%20Fiscal%C3%ADa%20de%20la%20Naci%C3%B3n!5e0!3m2!1ses!2spe!4v1682480306263!5m2!1ses!2spe"
+      class="w-full h-18rem" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"
+    ></iframe>
+  </div>
+
+  <fn-input-wrapper
+    label="Fecha del hecho"
+    class="col-12 md:col-6"
+  >
+    <p-calendar
+      dateFormat="dd/mm/yy"
+      formControlName="sceneDate"
+      placeholder="dd/mm/aaaa"
+      [ngClass]="{'ng-invalid ng-dirty': errorMsg('sceneDate')}"
+    />
+    <small
+      error
+      *ngIf="errorMsg('sceneDate')"
+      class="p-error block"
+    >
+      {{errorMsg('sceneDate')}}
+    </small>
+  </fn-input-wrapper>
+
+  <fn-input-wrapper
+    label="Hora aproximada del hecho (opcional)"
+    class="col-12 md:col-6"
+  >
+    <p-calendar
+      formControlName="sceneHour"
+      [timeOnly]="true"
+      [hourFormat]="12"
+      placeholder="00:00"
+      [ngClass]="{'ng-invalid ng-dirty': errorMsg('sceneHour')}"
+    />
+    <small
+      error
+      *ngIf="errorMsg('sceneHour')"
+      class="p-error block"
+    >
+      {{errorMsg('sceneHour')}}
+    </small>
+  </fn-input-wrapper>
+
+</form>

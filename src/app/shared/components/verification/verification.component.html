@@ -1,0 +1,154 @@
+
+<div class="text-xl font-semibold mt-6">Datos de verificación</div>
+<p>Por favor ingrese los siguientes datos para verificar su identidad como denunciante.</p>
+
+<p-messages
+  [(value)]="messages"
+  [enableService]="false"
+  [closable]="true"
+></p-messages>
+
+<p-checkbox
+  [(ngModel)]="lawyerPresent"
+  label="Presentar denuncia como abogado"
+  [binary]="true"
+  inputId="binary"
+  class="my-5"
+></p-checkbox>
+
+<div class="grid">
+  <div class="col-12 {{ classValidationContainer() }}">
+    <form [formGroup]="verificationForm">
+      <fn-input
+        label="Número de DNI"
+        placeholder="DNI"
+        [counter]="8"
+        [checking]="true"
+        formControlName="dni"
+      />
+  
+      <fn-input-wrapper label="Fecha de nacimiento">
+        <p-calendar
+          dateFormat="dd/mm/yy"
+          formControlName="bornDate"
+          placeholder="dd/mm/aaaa"
+          [ngClass]="{'ng-invalid ng-dirty': errorMsg('bornDate')}"
+        />
+        <small
+          error
+          *ngIf="errorMsg('bornDate')"
+          class="p-error block"
+        >
+          {{errorMsg('bornDate')}}
+        </small>
+      </fn-input-wrapper>
+  
+      
+    </form>
+
+    <form [formGroup]="dynamicValidationForm">
+
+      <div *ngIf="renderingValidation; else validationLoader">
+        <fn-input
+          *ngIf="validations[currentValidationIndex].controlName!=='dniEmitDate'; else dniEmitDate"
+          [label]="validations[currentValidationIndex].label"
+          [placeholder]="validations[currentValidationIndex].placeholder"
+          [checking]="validations[currentValidationIndex].checking"
+          [formControlName]="validations[currentValidationIndex].controlName"
+        />
+
+        <ng-template #dniEmitDate>
+          <fn-input-wrapper [label]="validations[currentValidationIndex].label">
+            <p-calendar
+              dateFormat="dd/mm/yy"
+              formControlName="dniEmitDate"
+              placeholder="dd/mm/aaaa"
+              [ngClass]="{'ng-invalid ng-dirty': errorMsg('dniEmitDate')}"
+            />
+            <small
+              error
+              *ngIf="errorMsg('dniEmitDate')"
+              class="p-error block"
+            >
+              {{errorMsg('dniEmitDate')}}
+            </small>
+          </fn-input-wrapper>
+        </ng-template>
+      </div>
+
+      <ng-template #validationLoader>
+        <p-progressBar mode="indeterminate" styleClass="my-6" [style]="{'height': '6px'}"></p-progressBar>
+      </ng-template>
+  
+      <div class="flex flex-row-reverse">
+        <p-button
+          (click)="changeValidation()"
+          label="Cambiar validación"
+          icon="pi pi-sync"
+          styleClass="p-button-info p-button-text"
+        ></p-button>
+      </div>
+    </form>
+
+    <form [formGroup]="lawyerForm" *ngIf="lawyerPresent">
+      <div class="text-lg font-semibold my-3">Datos del abogado</div>
+      <fn-input-wrapper label="Colegio de abogados">
+        <p-dropdown
+          [options]="[{nombre:'Lima',id:8}]"
+          optionLabel="nombre"
+          optionValue="id"
+          placeholder="Colegio de abogados"
+          formControlName="college"
+          emptyMessage="Datos no encontrados"
+          [ngClass]="{'ng-invalid ng-dirty': errorMsg('college')}"
+        ></p-dropdown>
+        <small
+          error
+          *ngIf="errorMsg('college')"
+          class="p-error block"
+        >
+          {{errorMsg('college')}}
+        </small>
+      </fn-input-wrapper>
+      
+      <fn-input
+        label="Código de colegio de abogados"
+        placeholder="Ej.: 66545"
+        formControlName="collegeCode"
+      />
+    </form>
+
+  </div>
+
+  <div *ngIf="showExampleImg" class="col-12 md:col-8">
+    <div class="flex flex-column xl:flex-row xl:flex-wrap xl:align-items-center xl:justify-content-center">
+      <figure
+        *ngFor="let asset of validations[currentValidationIndex].assets"
+        class="flex flex-column align-items-center"
+      >
+        <img [src]="asset.img" class="w-15rem" alt="">
+        <figcaption
+          class="text-sm text-center line-height-2 mt-2 w-15rem"
+        >
+          {{ asset.caption }}
+        </figcaption>
+      </figure>
+    </div>
+  </div>
+  
+</div>
+
+<div class="flex justify-content-between my-8">
+  <p-button
+    styleClass="p-button-lg surface-200 font-semibold text-primary"
+    label="Cancelar denuncia"
+  ></p-button>
+  <p-button
+    styleClass="p-button-lg bg-secondary font-semibold"
+    icon="pi pi-arrow-right"
+    iconPos="right"
+    label="Continuar"
+    [disabled]="!formsValidation"
+    (onClick)="nextStep()"
+  ></p-button>
+</div>

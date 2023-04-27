@@ -1,0 +1,64 @@
+<p-messages
+  [(value)]="messages"
+  [enableService]="false"
+  [closable]="true"
+></p-messages>
+
+<div class="fn-container min-h-screen">
+
+  <div class="text-4xl font-semibold text-primary mt-5">
+    Bienvenido a la Mesa de Partes Electrónica
+  </div>
+
+  <div class="text-xl mb-5">
+    Aquí usted podrá <span class="font-semibold">presentar documentos y denuncias</span> de hechos que ocurrieron en los distritos de: <span class="font-semibold">Barranco, Breña, Jesús María, La Victoria, Lima (Cercado), Lince, Magdalena del Mar, Miraflores, Pueblo Libre, Rímac, San Borja, San Isidro, San Luis, San Miguel, Santiago de Surco y Surquillo</span>, correspondientes al Distrito Fiscal de Lima; y de las jurisdicciones de: <span class="font-semibold">Ventanilla, Mi Perú, Santa Rosa, Ancón y Puente Piedra</span> pertenecientes al Distrito Fiscal de Lima Noroeste.
+  </div>
+
+  <div class="grid">
+    <div class="col-12 lg:col-6 xl:col-8">
+      <div class="grid grid-nogutter">
+        <div
+          class="hidden xl:block xl:col-5 bg-no-repeat bg-cover"
+          style="background-image: url('https://www.viajesgeotours.com/blog/wp-content/uploads/2022/04/alexander-schimmeck-MraFXV3v7Ts-unsplash-scaled-e1650667507519-990x564.jpg');"
+        ></div>
+        <div class="col-12 xl:col-7">
+          <div class="bg-primary text-white border-round-sm p-3 md:p-6">
+            <fn-icon [ico]="iFilePen" height="2.5rem" class="mb-3" />
+            <div class="text-2xl font-semibold mb-2">Presentación de denuncia</div>
+            <div class="mb-5">Reporta cualquier conducta sospechosa de la que hayas sido víctima o testigo.</div>
+            <div class="flex flex-column">
+              <p-button
+                (onClick)="showConditions()"
+                styleClass="p-button-lg bg-secondary font-semibold"
+                icon="pi pi-arrow-right"
+                iconPos="right"
+                label="Presentar denuncia"
+              ></p-button>
+              <p-button
+                label="Ver video explicativo"
+                class="align-self-end mt-3"
+                styleClass="p-button-text text-white p-button-lg font-semibold ml-auto"
+                icon="pi pi-play"
+              ></p-button>
+            </div>
+          </div>
+        </div>
+        
+      </div>
+    </div>
+    <div class="col-12 lg:col-6 xl:col-4">
+      <div class="surface-card text-primary border-round-sm h-full p-3 md:p-6">
+        <fn-icon [ico]="iPrintMagnifyingGlass" height="2.5rem" class="mb-3" />
+        <div class="text-2xl font-semibold mb-2">¿Ya realizaste una denuncia?</div>
+        <div class="mb-5 text-color">Consulta el estado de tus denuncias y adjunta documentos en caso necesario.</div>
+        <p-button
+          styleClass="p-button-lg p-button-outlined font-semibold"
+          icon="pi pi-arrow-right"
+          iconPos="right"
+          label="Consultar estado"
+        ></p-button>
+      </div>
+    </div>
+  </div>
+
+</div>

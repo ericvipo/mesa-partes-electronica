@@ -1,0 +1,92 @@
+<p class="mb-4">Puedes contarnos lo que sucedió de forma manual o utilizando el cuestionario inteligente.</p>
+
+<p-radioButton
+  name="questionnaire"
+  value="manual"
+  [(ngModel)]="questionnaire"
+  inputId="quest1"
+></p-radioButton>
+<label for="quest1" class="ml-2">Manual</label>
+
+<p-radioButton
+  name="questionnaire"
+  value="smart"
+  [(ngModel)]="questionnaire"
+  inputId="quest2"
+  class="ml-4"
+></p-radioButton>
+<label for="quest2" class="ml-2">Cuestionario inteligente</label>
+
+<form [formGroup]="form">
+
+  <fn-input-wrapper class="col-12">
+    <textarea
+      rows="5"
+      pInputTextarea
+      formControlName="report"
+      class="w-full"
+      [autoResize]="true"
+      [ngClass]="{'ng-invalid ng-dirty': errorMsg('report')}"
+    ></textarea>
+    <small
+      error
+      *ngIf="errorMsg('report')"
+      class="p-error block"
+    >
+      {{errorMsg('report')}}
+    </small>
+    <small
+      class="block text-right mt-1"
+    >
+      {{counterReportChar}}/300 máximo de caracteres
+    </small>
+  </fn-input-wrapper>
+
+  <fn-input-wrapper label="Seleccione la especialidad" class="col-12">
+    <p-dropdown
+      [options]="prosecutors"
+      (onClick)="showSpecialties()"
+      optionLabel="name"
+      optionValue="id"
+      placeholder="Seleccionar"
+      formControlName="specialty"
+      emptyMessage="Datos no encontrados"
+      dropdownIcon="pi pi-chevron-right"
+      scrollHeight="0"
+      [ngClass]="{'ng-invalid ng-dirty': errorMsg('specialty')}"
+    ></p-dropdown>
+    <small
+      error
+      *ngIf="errorMsg('specialty')"
+      class="p-error block"
+    >
+      {{errorMsg('specialty')}}
+    </small>
+  </fn-input-wrapper>
+
+  <fn-input-wrapper label="Seleccione el delito (opcional)" class="col-12">
+    <p-dropdown
+      [options]="[{nombre:'Robo',id:8},{nombre:'Homicidio',id:3}]"
+      optionLabel="nombre"
+      optionValue="id"
+      placeholder="Seleccionar"
+      formControlName="crime"
+      emptyMessage="Datos no encontrados"
+      [ngClass]="{'ng-invalid ng-dirty': errorMsg('crime')}"
+    ></p-dropdown>
+    <small
+      error
+      *ngIf="errorMsg('crime')"
+      class="p-error block"
+    >
+      {{errorMsg('crime')}}
+    </small>
+    <small
+      *ngIf="!form.get('specialty').value"
+      class="block mt-1"
+    >
+      Primero debe seleccionar una especialidad
+    </small>
+  </fn-input-wrapper>
+
+</form>

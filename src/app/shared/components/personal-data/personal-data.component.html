@@ -1,0 +1,87 @@
+<div class="text-xl font-semibold mt-6">Datos de verificación</div>
+<p>Por favor ingrese los siguientes datos para verificar su identidad como denunciante.</p>
+
+<p-messages
+  [(value)]="verificationMessage"
+  [enableService]="false"
+  [closable]="false"
+  styleClass="my-5"
+></p-messages>
+
+
+<form [formGroup]="personDataForm" class="mx-auto max-w-30rem">
+  <fn-input-wrapper label="Perfil">
+    <p-dropdown
+      [options]="[{nombre:'Ciudadano',id:8},{nombre:'Ciudadano 2',id:3}]"
+      optionLabel="nombre"
+      optionValue="id"
+      placeholder="Seleccione perfil"
+      formControlName="profile"
+      emptyMessage="Datos no encontrados"
+      [ngClass]="{'ng-invalid ng-dirty': errorMsg('profile')}"
+    ></p-dropdown>
+    <small
+      error
+      *ngIf="errorMsg('profile')"
+      class="p-error block"
+    >
+      {{errorMsg('profile')}}
+    </small>
+  </fn-input-wrapper>
+
+  <p-messages
+    [(value)]="profileMessage"
+    [enableService]="false"
+    [closable]="false"
+    styleClass="mb-3"
+  ></p-messages>
+
+  <fn-input
+    label="Celular"
+    [ico]="iMobileScreen"
+    placeholder="000 000 000"
+    [counter]="9"
+    [checking]="true"
+    formControlName="cellPhone"
+  />
+
+  <fn-input
+    label="Correo electrónico"
+    [ico]="iEnvelope"
+    placeholder="ejemplo@gmail.com"
+    formControlName="email"
+    [checking]="true"
+  />
+
+  <fn-input
+    label="Confirmar correo electrónico"
+    [ico]="iEnvelope"
+    placeholder="ejemplo@gmail.com"
+    formControlName="confirmEmail"
+    [checking]="true"
+  />
+
+</form>
+
+<div class="mt-5 mx-auto max-w-30rem">
+  <p-checkbox
+    label="Señalo mi número de celular y correo electrónico a efectos de ser notificado."
+    [(ngModel)]="confirmData"
+    [binary]="true"
+  ></p-checkbox>
+</div>
+
+<div class="flex justify-content-between my-8">
+  <p-button
+    styleClass="p-button-lg surface-200 font-semibold text-primary"
+    label="Cancelar denuncia"
+  ></p-button>
+  <p-button
+    styleClass="p-button-lg bg-secondary font-semibold"
+    icon="pi pi-arrow-right"
+    iconPos="right"
+    label="Continuar"
+    [disabled]="!formsValidation"
+    (onClick)="nextStep()"
+  ></p-button>
+</div>
